@@ -1,0 +1,5 @@
+REACT SERVER COMPONENT 
+
+    - React's new Server Components compliment Server-side rendering, enabling rendering into an intermediate abstraction format without needing to add to the JavaScript bundle. This both allows merging the server-tree with the client-side tree without a loss of state and enables scaling up to more components.
+
+    - React server has lessened the bundle size and has automatic code splitting now, React.lazy is very manual
