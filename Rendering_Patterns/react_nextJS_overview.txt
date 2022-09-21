@@ -1,0 +1,108 @@
+https://www.patterns.dev/posts/reactjs/
+
+React: open source js library used for building ui/components 
+    - React organizes interface into 3 parts: components, props and state
+    - Next.js is a react framework with ssr and code splitting
+JSX: embeds template HTML into js
+
+COMPONENTS:
+    - accept props and return elements
+    - functional and class components 
+PROPS:
+    - internal data of React components
+    - value of prop never changes, they are read and passed into components
+STATE:
+    - Object that may change over the life timme of a component
+
+REDUX FLUX:
+    - All components refer to centralized state, each component only handles it's presentation based on state, but not the logic of data handling (similar to MVC)
+
+REACT LIFECYCLE
+    - MOUNTING
+    - RENDERING 
+    - DISMOUNTING 
+
+render is required in class components, method is required in class components 
+HOC - high order component: function that takes a component and returns a new component ; reuses components 
+Context: eliminates need to pass data down between intermediary components 
+hooks: let you hook into lifecycle methods without writing a class
+
+Next.js > Create React App
+
+NEXT.JS
+    - The environment where your code runs: Development vs. Production
+    - When your code runs: Build Time vs. Runtime
+    - Where rendering happens: Client vs. Server
+
+    - PROD optimizations: compileS, bundleS, minifieS, and code splits.
+        ~ compiler transforms code into a language browsers can understand
+        ~ bundling is resolving your application dependency graph and reducing the number of files
+        ~ code splitting is process of splitting application bundles into smaller chunks required by each URL
+        ~ each file inside of pages folder is automatically code split 
+        ~dynamic imports is like lazy loading 
+
+
+Rendering is proces of taking JSX and converting it to HTML - this can be done on the server or client; can happen ahead of time at build time or on every request at run time 
+    - can use client side rendering in next with react useEffect and making api call their
+    - next pre-renders every page by default 
+
+https://www.patterns.dev/posts/nextjs/
+
+NEXT.JS (npx create-next-app)
+    - react works in the shadow dom because next.js (pre-renders(server-sode rendering and static generation) on the server) and hydrates the page
+
+    DATA FETCHING
+        ~ getStaticProps - static generation to render data 
+        ~ getStaticPaths - static generation to get dynamic routes 
+        ~ getServerSideProps - SSR
+    
+    IMAGES  
+        ~ served from public folder in root
+        ~ automatic image optimization
+        ~ images must be imported with import
+            import Image from 'next/image'
+            <Image src="/logo.png" alt="Logo" width={500} height={500} />
+        ~ non-imported images must have a height and width defined
+            this means local images not imported and declared as a variable and external urls
+        ~ must specify remotePatterns in next.config.js for external images
+    ROUTING
+        ~ through pages directory - just name of .js file in this directory
+        ~ dynamic url - pages/products/[pid].js
+    LINKS
+        ~ If the child of Link is a custom component that wraps an <a> tag, you must add passHref to Link
+            import Link from 'next/link'
+
+            <Link href={href} passHref>
+                <RedLink>{name}</RedLink>
+            </Link>
+    CODE SPLITTING
+        ~ route based code pslitting is done automatically 
+        ~ component based code splitting through dynamic imports 
+            - lazy load external libraries with import()
+            - lazy load React components with next/dynamic
+                ~ when next/dynamix is used in combination with suspense components can delay hydration
+
+                    import dynamic from 'next/dynamic'
+                    import { Suspense } from 'react'
+
+                    const DynamicHeader = dynamic(() => import('../components/header'), {
+                        suspense: true,
+                    })
+
+                    export default function Home() {
+                        return (
+                            <Suspense fallback={`Loading...`}>
+                                <DynamicHeader />
+                            </Suspense>
+                        )
+                    }
+        ~ import paths have to be strings, not variables or temprate literals
+        ~ import a react component on the client side 
+            import dynamic from 'next/dynamic'
+
+            const DynamicHeader = dynamic(() => import('../components/header'), { ssr: false })
+
+
+
+
+        
