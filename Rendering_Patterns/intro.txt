@@ -1,0 +1,61 @@
+https://www.patterns.dev/posts/rendering-introduction/
+
+core web vitals ensures great user experience
+    - time to first byte
+    - first/largest contentful paint
+    - time to interactive
+    - cumulative shift layout
+    - first input delay
+
+Chrome suggests static or server-side rendering over full rehydration
+    - hydation (DOM that has already been built to render components into)
+
+static rendering
+    - entire page gets generated at build, pre-rendered and cached
+    - good for unchanging content
+    - 4 types
+        ~Plain static rendering
+            - no dynamic content
+            - html is created when site is built
+            - very fast CWV
+        ~ STATIC W/ CLIENT SIDE FETCH
+            - dynamic content is fetched
+            - updates data on every request
+            - user initially sees skeleton w/out any data 
+            - LCP is not good waits for fetch
+
+        ~ STATIC W/ GET STATIC PROPS
+            - HTML gets generated at build - good if you already know your data 
+            - getStaticProps method generates HTML on the server
+            - dont need skeleton or api call 
+
+        ~ INCREMENTAL STATIC REGENERATION
+            - generate some pages at build time and some on demand
+            - pre-renders certain static pages and renders dynamic pages on demand
+            - landing page is dynamic, to fix this would need to invalidate cache and regenerate
+            - expensive server costs
+
+        ~ ON-DEMAND INCREMENTAL STATIC REGENERATION 
+            - page regeneration occurs at certain events not on certain intervals (ie not time the page has been cached for)
+            - webhook listens for new data from provider
+            ***  ON-DEMAND INCREMENTAL STATIC REGENERATION  is the best of all worlds ***
+
+METHODS FOR  ON-DEMAND INCREMENTAL STATIC REGENERATION 
+    - Serverside rendering  
+        ~ bad core web vitals
+        ~ high costs, invoke serverless functions at every request
+        ~ execution time of get server-sode props 
+            - tip for speed - deploy serverless functions in region close to databases
+    - Edge serverside rendering and HTTP streaming
+        - vercel is exploring edge SSR and HTTP streaming 
+        - with serverless functions we generate the entire page server side and wait for the whole bundle to be loaded and parsed on the client before hydration can begin
+        - with edge SSR we can stream parts of the document as soon as theyre ready and hydrate granularly as soon as theyre ready 
+
+    - STREAMING SSR AND REACT SERVER COMPONENTS 
+        ~ streaming SSR enables reat server components
+        ~ combo of edge ssr and react server components forms hybrid of static and serverside rendering 
+        ~ partially render react components on the server
+        ~ excellent performance of Static Rendering with the dynamic benefits of Server-Side Rendering.
+     ***  STREAMING SSR AND REACT SERVER COMPONENTS IS BEST METHOD FOR ON-DEMAND INCREMENTAL STATIC REGENERATION  ***
+
+
