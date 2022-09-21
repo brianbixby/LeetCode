@@ -1,0 +1,8 @@
+STATIC RENDERING aka STATIC GENERATION (SSG)
+    - good for static pages like about page 
+    - Listing page a ll items - to static generate for example all blog posts
+        getStaticProps() is called at the build time to get the data and pre-gen these pages 
+            - to create these urls dynamicaly for the static pre-rendered pages we use 
+                getStaticPaths()
+
+    constant redeployments are needed every time a change is made to one of these pages because html pages are actually created for every page, also need a good cdn

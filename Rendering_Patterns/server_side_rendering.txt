@@ -1,0 +1,25 @@
+SERVER SIDE RENDERING (SSR)
+    - with SSR every request is treated independently and will be processed as a new request by the server
+        getServerSideProps
+
+REACT FOR SERVER   
+    - React can be rendered isomorphically, can function on browser and server. UI elements can be rendered on the server
+
+    - React can be rendered isomorphically, which means that it can function both on the browser as well as other platforms like the server. Thus, UI elements may be rendered on the server using React.
+    - React can be used with Universal code, same code to run in multiple environments w/ a Node server
+        ~ TO DO THIS EVERY FILE MUST BE A .JS FILE
+    - universal JavaScript may be used to fetch data on the server and then render it using isomorphic React.
+
+        ReactDOMServer.renderToString(element)
+
+    SERVER - ipage.js file 
+        app.get('/', (req, res) => {
+            const app = ReactDOMServer.renderToString(<App />);
+        })
+
+    CLIENT - ipage.js file
+
+        ReactDOM.hydrate(<App />, document.getElementById('root'));
+
+REACT SERVER SIDE RENDERING EXAMPLE
+    https://www.digitalocean.com/community/tutorials/react-server-side-rendering
