@@ -1,2 +1,5 @@
 PROGRESSIVE HYDRATION
-
+    - server makes all api calls - time to interact can take a while
+    - hydrates DOM nodes over time
+    - makes content in the viewport accessible
+    - Hydration allows client-side React to recognize the ReactDOM components that are rendered on the server and attach events to these components. Thus, it introduces continuity and seamlessness for an SSR app to function like a CSR app once it is available on the client.
