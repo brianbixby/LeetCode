@@ -1,0 +1,10 @@
+Client Side Rendering (CSR)   
+    - large bundles hurting Core Web Vitals
+    - CSR performance is inversely related to the client side bundle
+        ~ INITIAL BUNDLE SIZE RECCOMENDATION: 100-170KB minified and gzipped
+    - can preload crucial csr js by adding it to head of html 
+        <link rel="preload" as="script" href="critical.js">
+    - lazy load non-critical resources
+    - web pack code splitting on client side 
+        https://webpack.js.org/guides/code-splitting/
+    
