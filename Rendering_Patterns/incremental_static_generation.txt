@@ -1,0 +1,7 @@
+INCREMENTAL STATIC GENERATION 
+    -combination of static pre-rendered pages and dynamic pages, example: the blog article pages would be dynamically created and the about page would be pre-rendered and because of that While the generation of the page takes place, a fallback page or a loading indicator can be shown to the user on the front-end
+        Once it is generated it will be cached
+
+    in getStativ Props can have rrevalidate property and a time in seconds the page will refresh once that time is hit 
+    
+    BENEFITS ARE DYNAMIC DATA WITHOUT NEED TO REBUILD THE SITE, However server costs with all the reloads and revalidations
