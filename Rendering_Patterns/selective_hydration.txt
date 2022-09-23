@@ -1,0 +1,10 @@
+SELECTIVE HYDRATION 
+    - How to use combine streaming server-side rendering with a new approach to hydration, selective hydration
+
+    -Uses pipeToNodeStream on the server
+
+    - pipeToNodeStream with the createRoot method and Suspense, makes it possible to start streaming HTML without having to wait for the larger components to be ready. This means that we can lazy-load components when using SSR, which wasn’t (really) possible before!
+
+    - don't have to wait for all components to hydrate before we interact
+
+    https://codesandbox.io/s/festive-star-9hfqt?file=/server/server.js

@@ -1,0 +1,25 @@
+https://www.patterns.dev/posts/loading-sequence/
+
+OPTIMIZE LOADING SEQUENCE
+    - optimizing for better Core Web Vitals
+        ~ FCP occurs before LCP which occurs before FID - resources should be prioritized in the order of Core Web Vitals
+        ~ By the time FCP fires, the hero image should be available for firing LCP.
+        ~ By the time LCP fires, the JavaScript (JS) should be downloaded, parsed and ready (or already executing) to unblock interaction (FID).
+    
+    - A great example of this is scripts that may be downloaded concurrently or sequentially. As the bandwidth gets divided during concurrent download, the total time for downloading all scripts is the same for both sequential and concurrent downloads. If you download scripts concurrently, the CPU is underutilized during the download. 
+    - Download the scripts sequentially, the CPU can start processing the first one as soon as it is downloaded. This results in better CPU and Network utilization.
+
+TO DO:
+    - Download scripts sequentially
+    - 3p (third party products are bulky and slow, not optimized for load times)
+    - Browsers may differ in how they prioritize requests
+    - Preload using "as" or fetch using "type" use the priority of the type they are requesting (e.g., preload as="stylesheet" will use Highest priority). With no "as", they will behave like an XHR
+    - The browser downloads resources with the same computed priority in the order they are discovered. You can check the priority assigned to different resources when loading a page under the Chrome Dev Tools Network tab. (Ensure that you check the priority column by right-clicking on the table headings).
+    - import loadable from "@loadable/component";
+
+
+    https://web.dev/priority-hints/
+    https://www.patterns.dev/posts/loading-sequence/
+
+
+    
