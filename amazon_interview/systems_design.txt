@@ -1,0 +1,33 @@
+Uber
+http://highscalability.com/blog/2022/1/25/designing-uber.html
+
+Tinder
+http://highscalability.com/blog/2022/1/17/designing-tinder.html
+
+Netflix
+http://highscalability.com/blog/2021/12/13/designing-netflix.html
+
+Whatsapp
+http://highscalability.com/blog/2022/1/3/designing-whatsapp.html
+
+Instagram
+http://highscalability.com/blog/2022/1/11/designing-instagram.html
+Capacity planning:
+
+
+General:
+    show lifecycle of product aka user experience
+
+Optimizations
+
+    One of the problem with the proposed design is that both the heavy reads and writes are directed to the data store. We can optimize the system by separating the read traffic from the writes by caching the raw driver locations in a distributed cache (Redis). The raw driver locations from the Redis cache is leveraged by MapMatcher to create the matched map and persist it in the data-store.
+
+Addressing Bottlenecks:
+
+In the system, each of the components comprise of different micro-services each performing a separate task. We will be having separate web-services for Driver Location Management, Map Matching, ETA calculation and so forth. We can make the system more resilient by having fallback mechanism in-place to account for service failures. Some common fallback mechanisms include using the most recently cached data or even using fallback web-services in some cases. Chaos engineering is a commonly used approach for resiliency testing where failures/disruptions are injected in the system and its performance is monitored to make improvements for making the service more resilient to failures.
+
+We can introduce two types of disruptions for the purpose of resiliency testing. The first kind of failures are called the process-level failures such as SIGKILL, SIGINT, SIGTERM, CPU throttling, and Memory limiting. The second type of failures are the Network-level failures such as Delays in the inbound network calls, Packet Loss in the outbound calls to the external dependencies, and blocking read/writes to the database. 
+
+Extended Requirement:
+
+automate something
