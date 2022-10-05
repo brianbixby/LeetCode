@@ -1,0 +1,60 @@
+traversals
+  pre-order, in-order,post-order, bfs, dfs
+    - recursive and iteratively 
+    - depth first search uses a stack 
+      - pre-order: visit, left, right 
+      - in-order: left, visit, right 
+      - post order: left, right, visit
+    - breadth first search we use a queue 
+      - level order
+      DFS: visit, left, right
+
+  - data structure to rep a tree 
+    node w/array of children nodes 
+  - know recursion well and elegantly
+    - helper function for recursive program
+
+  - stacks and queues:  
+    pop: remove from end
+    push: add to end 
+    shift: remove from beginning
+    unshift: add to beginning
+    
+- Object.keys(dict).find(key=> dict[key] !== 2)
+
+    - fibonacci iteratively 
+    var fib = function(n) {
+      // if (!n) return 0;
+      // return (n < 3 ? 1 : fib(n-1) + fib(n-2))
+      if (n < 2) return n;
+      let prev2 = 0, prev1 = 1, curr;
+      for (let i=2;i<=n;i++) {
+          curr = prev1 + prev2;
+          prev2 = prev1;
+          prev1 = curr;
+      }
+      return curr;
+    };
+
+
+
+ know classes - object oriented programming 
+      - set up grid class instead of 2-d array 
+- hashmaps
+
+- strings 
+    - is palindrome
+    - is anagram 
+- dynamic programming 
+  - memoization - caching values as you go through  and reusing that values
+
+
+
+- object oriented
+    - inheritance
+    - agggregation
+- sorting 
+    - know run time analysis 
+    - bubble sort, merge sort, quick sort 
+- divide & conquer
+    - binary search
