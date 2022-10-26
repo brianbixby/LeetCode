@@ -1,0 +1,25 @@
+{
+  "name": "practice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+
+  "scripts": {
+    "watch": "nodemon server.js",
+    "seed": "node seeds/index.js",
+    "start": "node server.js",
+    "resetdb": "mysql -u root -p <  ./db/schema.sql",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "connect-session-sequelize": "^7.1.5",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.25.0"
+  }
+}

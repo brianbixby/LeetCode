@@ -69,7 +69,6 @@ var levelOrder = function(root) {
 };
 
 // breadthFirstSearch iteratively
-var breadthFirstSearch = function(root) {
   const visited = [];
   const queue = [];
   let current = root;

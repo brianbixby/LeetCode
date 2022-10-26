@@ -1,0 +1,162 @@
+REACT HOOKS:
+    https://www.youtube.com/watch?v=LlvBzyy-558&t=781s
+
+    ** useState: used for state
+        const [counter, serCounter] = useState(0);
+
+        - react refreshes every element that uses the state when it changes
+    
+    ** useReducer: used for updating multiple states
+        const [state, dispatch] = useReducer(reducer, { count: 0, showText: true });
+
+        const reducer = (state, action) => {
+        switch (action.type) {
+                case "INCREMENT":
+                    return { count: state.count + 1, showText: state.showText };
+                case "toggleShowText":
+                    return { count: state.count, showText: !state.showText };
+                default:
+                    return state;
+            }
+        };
+
+    **  useEffect: called every time page rerenders, CALLED EVERY TIME A STATE IS CHANGED
+
+
+      useEffect(() => {
+        axios
+        .get("https://jsonplaceholder.typicode.com/comments")
+        .then((response) => {
+            setData(response.data[0].email);
+            console.log("API WAS CALLED");
+        });
+    }, []);
+
+    ** useRef: to manipulate individual elements in virtual DOM
+
+        const inputRef = useRef(null);
+
+        const onClick = () => {
+            inputRef.current.focus();
+            inputRef.current.value = "";
+        };
+
+        <input type="text" placeholder="Ex..." ref={inputRef} />
+
+    ** useLayoutEffect: gets called before useEffect, FIRES SYNCHRONOUSLY FOR FIRST PAINT AKA BLOCKING
+          useLayoutEffect(() => {
+                console.log(inputRef.current.value);
+            }, []);
+
+    ** useImperativeHandle: allows a parent component to updatestate or mamnipulate child component without explicity passing state and props to both, USED W/ forwardRef - parent function can call functions in child component on click
+
+        import React, { useRef } from "react";
+        import Button from "./Button";
+
+        function ImperativeHandle() {
+        const buttonRef = useRef(null);
+        return (
+            <div>
+            <button
+                onClick={() => {
+                buttonRef.current.alterToggle();
+                }}
+            >
+                Button From Parent
+            </button>
+            <Button ref={buttonRef} />
+            </div>
+        );
+        }
+
+        export default ImperativeHandle;
+
+        import React, { forwardRef, useImperativeHandle, useState } from "react";
+
+        const Button = forwardRef((props, ref) => {
+        const [toggle, setToggle] = useState(false);
+
+        useImperativeHandle(ref, () => ({
+        alterToggle() {
+            setToggle(!toggle);
+        },
+        }));
+        return (
+        <>
+            <button>Button From Child</button>
+            {toggle && <span>Toggle</span>}
+        </>
+        );
+        });
+
+        export default Button;
+
+    
+    ** useContext: like redux state USE W/ createContext
+
+        import React, { useState, createContext } from "react";
+        import Login from "./Login";
+        import User from "./User";
+
+        export const AppContext = createContext(null);
+
+        function ContextTutorial() {
+        const [username, setUsername] = useState("");
+
+        return (
+        <AppContext.Provider value={{ username, setUsername }}>
+            <Login /> <User />
+        </AppContext.Provider>
+        );
+        }
+
+        export default ContextTutorial;
+
+        import React, { useContext } from "react";
+        import { AppContext } from "./ContextTutorial";
+
+        function Login() {
+        const { setUsername } = useContext(AppContext);
+
+        return (
+            <div>
+            <input
+                onChange={(event) => {
+                setUsername(event.target.value);
+                }}
+            />
+            </div>
+        );
+        }
+
+        export default Login;
+
+        import React, { useContext } from "react";
+        import { AppContext } from "./ContextTutorial";
+
+        function User() {
+        const { username } = useContext(AppContext);
+
+        return (
+            <div>
+            <h1>User: {username}</h1>
+            </div>
+        );
+        }
+
+        export default User;
+
+
+    ** useMemo: memoizes functions and algorithm computations so they don't have to be recalculated every time the component updates,  ONLY GETS RECOMPUTED WHEN DEPENDENCY ARRAY CHANGES, stores value from function 
+
+        const findLongestName = (comments) => {
+
+        }
+
+        const getLongestName = useMemo(() => findLongestName(data), [toggle]);
+
+        <div className="App">
+         <div> {getLongestName} </div>
+        </div>
+
+** useCallback: like useMemo, but stores the function not the value so you can have dynamic inputs

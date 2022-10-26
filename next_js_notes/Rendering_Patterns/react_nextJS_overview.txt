@@ -103,6 +103,6 @@ NEXT.JS (npx create-next-app)
             const DynamicHeader = dynamic(() => import('../components/header'), { ssr: false })
 
 
-
+npx create-next-app@latest
 
         
